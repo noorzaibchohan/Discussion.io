@@ -23,8 +23,7 @@ from django.urls import reverse_lazy
 
 from .tasks import test_func
 
-   
- 
+    
  
 
 class LoginView(View):
@@ -302,6 +301,8 @@ class TopicsPageView(ListView):
         q = self.request.GET.get('q','')
         return Topic.objects.filter(name__icontains=q)
     
+
+
 
 
 # celery test view

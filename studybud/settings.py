@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.gitlab',
     
+    
     'django_celery_results',
     'rest_framework',
     
@@ -179,7 +180,7 @@ AUTHENTICATION_BACKENDS = [
 
 SOCIALACCOUNT_PROVIDERS = {
     "gitlab": {
-        "SCOPE": ["read_user"],
+        "SCOPE": ["read_user","profile","email"],
         "APPS": [
             {
                 "client_id": "ec7a486de797412f27c113fbebd92fbc8ca2c450706576b6cb703ca782b7818c",

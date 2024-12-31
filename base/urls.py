@@ -24,9 +24,10 @@ urlpatterns = [
     
     path('update_user/', views.UpdateUserView.as_view(), name='update_user'),
     path('topics/',  TopicsPageView.as_view() , name='topics'),
+
     
     
-   path('celery/', views.test,name='test'),
+    path('celery/', views.test,name='test'),
     
     
 ]
