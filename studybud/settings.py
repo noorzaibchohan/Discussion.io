@@ -42,10 +42,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.gitlab',
+    'allauth.socialaccount.providers.facebook',
     
     
     'django_celery_results',
     'rest_framework',
+    'django_extensions',
+    'sslserver',
     
     
 ]
@@ -190,6 +193,15 @@ SOCIALACCOUNT_PROVIDERS = {
                 }
             }
         ]
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "rerequest"},
+        "FIELDS": ["email", "name", "first_name", "last_name"],
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v12.0",  # Facebook API version
     },
 }
 
