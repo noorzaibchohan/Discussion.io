@@ -25,6 +25,11 @@ urlpatterns = [
     path('update_user/', views.UpdateUserView.as_view(), name='update_user'),
     path('topics/',  TopicsPageView.as_view() , name='topics'),
 
+
+    path('password_reset/', views.PasswordResetView.as_view() , name='password_reset'),
+    path('password_reset_done/', views.PasswordResetDoneView.as_view() , name='password_reset_done'),
+    path('password_reset_confirm/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(template_name="registration/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('password_reset_complete/', views.PasswordResetCompleteView.as_view() , name='password_reset_complete'),
     
     
     path('celery/', views.test,name='test'),

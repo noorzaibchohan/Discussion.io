@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -27,7 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,24 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.gitlab',
     'allauth.socialaccount.providers.facebook',
-    
-    
+
     'django_celery_results',
     'rest_framework',
     'django_extensions',
     'sslserver',
-    
-    
+
 ]
 EXTERNAL_APPS = [
     'base.apps.BaseConfig',
-    
+
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS
@@ -67,8 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', 
-    
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'studybud.urls'
@@ -93,17 +93,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studybud.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -123,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -134,7 +131,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -152,7 +148,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # Set the session engine to use the database for storing session data
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
@@ -160,7 +155,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'sessionid'
 
 # session will expire in 5 mins (3600 in seconds)
-SESSION_COOKIE_AGE = 3600 
+SESSION_COOKIE_AGE = 3600
 
 # Set whether the session cookie expires when the browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
@@ -168,28 +163,25 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Set whether to save the session data on every request
 SESSION_SAVE_EVERY_REQUEST = False
 
-
-
-
 AUTHENTICATION_BACKENDS = [
-    
+
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-    
+
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
     "gitlab": {
-        "SCOPE": ["read_user","profile","email"],
+        "SCOPE": ["read_user", "profile", "email"],
         "APPS": [
             {
                 "client_id": "ec7a486de797412f27c113fbebd92fbc8ca2c450706576b6cb703ca782b7818c",
                 "secret": "gloas-8570d2899c3c606386b30060510603eb04cb663611672c02b51a4b4d084028ed",
                 "settings": {
-                "callback_url": "http://127.0.0.1:8000/accounts/gitlab/login/callback/",
+                    "callback_url": "http://127.0.0.1:8000/accounts/gitlab/login/callback/",
                 }
             }
         ]
@@ -210,13 +202,12 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_REDIRECT_URL = "home"
 ACCOUNT_LOGOUT_ON_GET = True
 
-
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Karachi'   #Times are converted to Asia/Karachi for display and operations.
-       
+CELERY_TIMEZONE = 'Asia/Karachi'  # Times are converted to Asia/Karachi for display and operations.
+
 CELERY_RESULT_BACKEND = 'django-db'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
