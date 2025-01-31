@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'sslserver',
+    'drf_yasg',
 
 ]
 EXTERNAL_APPS = [

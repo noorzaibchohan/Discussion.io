@@ -79,6 +79,7 @@ class RegisterPageView(View):
         if form.is_valid():
             user = form.save(commit=True)
             user.username = user.username.lower()
+            user.set_password(form.cleaned_data['password'])
 
             if User.objects.filter(username=user.username).exists():
                 messages.error(request, "Username is already taken!")
@@ -94,7 +95,7 @@ class RegisterPageView(View):
         else:
             messages.error(request, "An unxpected error occurred ")
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'page' : 'register'})
 
 
 class HomeView(View):

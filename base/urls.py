@@ -1,5 +1,5 @@
-from django.urls import path  
-from . import views 
+from django.urls import path
+from . import views
 from .views import LoginView , LogoutView , TopicsPageView , HomeView , RegisterPageView , DetailView
 from .views import UserProfileView , RoomDetailView , RoomMessageCreateView , UpdateUserView
 from .views import  DeleteRoomView ,  DeleteMessageView, CreateRoomView , RoomUpdateView
